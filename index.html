@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Montagrid Junior</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">🏰</div>
+        <div>
+          <h1>Montagrid Junior</h1>
+          <p>Histoire, personnages et jeux interactifs</p>
+        </div>
+      </div>
+      <button id="homeBtn" class="ghost-btn">Accueil</button>
+    </header>
+
+    <section id="homeView" class="view active">
+      <div class="hero">
+        <div class="hero-text">
+          <h2>Entre dans le royaume de Montagrid</h2>
+          <p>
+            Lis les 12 chapitres, découvre les personnages, réponds aux quiz, résous les énigmes,
+            complète les mots mêlés et les mini mots croisés.
+          </p>
+
+          <div class="hero-actions">
+            <button class="main-btn" data-open="storyView">📖 Lire l’histoire</button>
+            <button class="main-btn" data-open="charactersView">🧙 Personnages</button>
+            <button class="main-btn" data-open="gamesView">🎮 Jeux</button>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <button class="hero-badge clickable-badge" data-open="storyView">12 chapitres</button>
+          <button class="hero-badge clickable-badge" data-open="charactersView">Cartes à retourner</button>
+          <button class="hero-badge clickable-badge" data-open="gamesView">Quiz + Vrai/Faux</button>
+          <button class="hero-badge clickable-badge" data-open="gamesView">Énigmes + Mots mêlés</button>
+          <button class="hero-badge clickable-badge" data-open="gamesView">Mini mots croisés</button>
+          <button class="hero-badge clickable-badge" data-open="gamesView">Coin dessin</button>
+        </div>
+      </div>
+
+      <div class="dashboard">
+        <button class="dash-card clickable-card" data-open="storyView">
+          <h3>📚 Histoire</h3>
+          <p>Lecture complète des chapitres avec navigation simple.</p>
+        </button>
+
+        <button class="dash-card clickable-card" data-open="charactersView">
+          <h3>🪪 Cartes</h3>
+          <p>Les personnages se retournent recto / verso.</p>
+        </button>
+
+        <button class="dash-card clickable-card" data-open="gamesView">
+          <h3>🧩 Activités</h3>
+          <p>Chaque chapitre possède ses propres jeux.</p>
+        </button>
+      </div>
+    </section>
+
+    <section id="storyView" class="view">
+      <div class="section-head">
+        <h2>📖 Lecture de l’histoire</h2>
+        <div class="chapter-nav">
+          <button id="prevChapterBtn" class="small-btn">◀ Précédent</button>
+          <select id="chapterSelect"></select>
+          <button id="nextChapterBtn" class="small-btn">Suivant ▶</button>
+        </div>
+      </div>
+
+      <div class="story-layout">
+        <aside class="chapter-list-panel">
+          <h3>Chapitres</h3>
+          <div id="chapterList" class="chapter-list"></div>
+        </aside>
+
+        <article class="story-card">
+          <h3 id="chapterTitle"></h3>
+          <div id="chapterText" class="chapter-text"></div>
+          <div class="story-bottom-actions">
+            <button id="openCurrentGamesBtn" class="main-btn">🎮 Jouer avec ce chapitre</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="charactersView" class="view">
+      <div class="section-head">
+        <h2>🧙 Galerie des personnages</h2>
+        <p>Survole ou clique une carte pour la retourner.</p>
+      </div>
+      <div id="charactersGrid" class="characters-grid"></div>
+    </section>
+
+    <section id="gamesView" class="view">
+      <div class="section-head">
+        <h2>🎮 Jeux du chapitre</h2>
+        <div class="chapter-nav">
+          <button id="gamesPrevBtn" class="small-btn">◀</button>
+          <select id="gamesChapterSelect"></select>
+          <button id="gamesNextBtn" class="small-btn">▶</button>
+        </div>
+      </div>
+
+      <div class="games-layout">
+        <div class="game-box">
+          <h3 id="gamesChapterTitle"></h3>
+          <p id="gamesIntro"></p>
+        </div>
+
+        <div class="game-box">
+          <div class="box-title-row">
+            <h3>QCM</h3>
+            <button id="checkQuizBtn" class="small-btn">Vérifier</button>
+          </div>
+          <div id="quizContainer"></div>
+          <p id="quizResult" class="result-text"></p>
+        </div>
+
+        <div class="game-box">
+          <div class="box-title-row">
+            <h3>Vrai / Faux</h3>
+            <button id="checkTfBtn" class="small-btn">Vérifier</button>
+          </div>
+          <div id="tfContainer"></div>
+          <p id="tfResult" class="result-text"></p>
+        </div>
+
+        <div class="game-box">
+          <div class="box-title-row">
+            <h3>Qui a dit ?</h3>
+            <button id="checkQuoteBtn" class="small-btn">Vérifier</button>
+          </div>
+          <div id="quoteContainer"></div>
+          <p id="quoteResult" class="result-text"></p>
+        </div>
+
+        <div class="game-box">
+          <div class="box-title-row">
+            <h3>Énigmes</h3>
+            <button id="showRiddlesBtn" class="small-btn">Afficher / Masquer les réponses</button>
+          </div>
+          <div id="riddlesContainer"></div>
+        </div>
+
+        <div class="game-box">
+          <div class="box-title-row">
+            <h3>Mots mêlés</h3>
+            <button id="newWordSearchBtn" class="small-btn">Recharger</button>
+          </div>
+          <p class="hint-text">Entoure mentalement les mots ou imprime la page. Les mots à trouver sont affichés sous la grille.</p>
+          <div id="wordSearchGrid" class="wordsearch-grid"></div>
+          <div id="wordSearchWords" class="wordsearch-words"></div>
+        </div>
+
+        <div class="game-box">
+          <div class="box-title-row">
+            <h3>Mini mots croisés</h3>
+            <button id="checkCrossBtn" class="small-btn">Corriger</button>
+          </div>
+          <div id="crosswordContainer"></div>
+          <p id="crosswordResult" class="result-text"></p>
+        </div>
+
+        <div class="game-box">
+          <div class="box-title-row">
+            <h3>Coin dessin / coloriage</h3>
+            <div class="draw-tools">
+              <input type="color" id="drawColor" value="#ff6b81" />
+              <input type="range" id="drawSize" min="2" max="20" value="6" />
+              <button id="clearCanvasBtn" class="small-btn">Effacer</button>
+            </div>
+          </div>
+          <canvas id="drawCanvas" width="900" height="360"></canvas>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
